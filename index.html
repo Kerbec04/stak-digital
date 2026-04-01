@@ -1,0 +1,1366 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Especialistas em SEO local e Google Meu Negócio para negócios que querem ser encontrados. Diagnóstico gratuito. Resultados em 30–60 dias.">
+    <title>STAK Digital: Seu negócio no topo. Do mapa ao clique.</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        /* ================================
+           Custom Properties
+        ================================ */
+        :root {
+            --blue:        #185FA5;
+            --blue-dark:   #0f4a82;
+            --blue-light:  #2474c4;
+            --green:       #1D9E75;
+            --green-dark:  #158060;
+            --graphite:    #2C2C2A;
+            --graphite-lt: #4a4a47;
+            --light-blue:  #E6F1FB;
+            --white:       #ffffff;
+            --gray-100:    #f8f9fa;
+            --gray-200:    #e9ecef;
+            --gray-600:    #6c757d;
+
+            --font:        'Outfit', sans-serif;
+            --radius:      12px;
+            --radius-sm:   8px;
+            --shadow:      0 4px 20px rgba(24, 95, 165, 0.12);
+            --shadow-lg:   0 8px 40px rgba(24, 95, 165, 0.18);
+            --ease:        0.3s ease;
+        }
+
+        /* ================================
+           Reset & Base
+        ================================ */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: var(--font);
+            color: var(--graphite);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        img { max-width: 100%; display: block; }
+        a   { text-decoration: none; color: inherit; }
+        ul  { list-style: none; }
+
+        /* ================================
+           Layout
+        ================================ */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        section { padding: 88px 0; }
+
+        /* ================================
+           Typography helpers
+        ================================ */
+        h1 { font-size: clamp(2.2rem, 5vw, 3.5rem); font-weight: 800; line-height: 1.15; }
+        h2 { font-size: clamp(1.75rem, 3.5vw, 2.4rem); font-weight: 700; line-height: 1.25; }
+        h3 { font-size: 1.2rem; font-weight: 600; }
+
+        .section-tag {
+            display: inline-block;
+            background: var(--light-blue);
+            color: var(--blue);
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            padding: 6px 16px;
+            border-radius: 100px;
+            margin-bottom: 16px;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 56px;
+        }
+
+        .section-header h2 { margin-bottom: 12px; }
+
+        .section-subtitle {
+            color: var(--graphite-lt);
+            font-size: 1.05rem;
+            max-width: 580px;
+            margin: 0 auto;
+        }
+
+        /* ================================
+           Buttons
+        ================================ */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 28px;
+            border-radius: var(--radius-sm);
+            font-family: var(--font);
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all var(--ease);
+            white-space: nowrap;
+        }
+
+        .btn-green {
+            background: var(--green);
+            color: var(--white);
+            border-color: var(--green);
+        }
+        .btn-green:hover {
+            background: var(--green-dark);
+            border-color: var(--green-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(29, 158, 117, 0.4);
+        }
+
+        .btn-outline-white {
+            background: transparent;
+            color: var(--white);
+            border-color: rgba(255, 255, 255, 0.55);
+        }
+        .btn-outline-white:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--white);
+            transform: translateY(-2px);
+        }
+
+        .btn-blue {
+            background: var(--blue);
+            color: var(--white);
+            border-color: var(--blue);
+        }
+        .btn-blue:hover {
+            background: var(--blue-dark);
+            border-color: var(--blue-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(24, 95, 165, 0.4);
+        }
+
+        /* ================================
+           Navbar
+        ================================ */
+        .navbar {
+            position: fixed;
+            inset: 0 0 auto 0;
+            z-index: 1000;
+            padding: 20px 0;
+            transition: all var(--ease);
+        }
+
+        .navbar.scrolled {
+            background: rgba(12, 32, 55, 0.96);
+            backdrop-filter: blur(10px);
+            padding: 13px 0;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.25);
+        }
+
+        .navbar .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        /* Logo */
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon {
+            width: 44px;
+            height: 44px;
+            background: var(--white);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            font-weight: 800;
+            color: var(--blue);
+            letter-spacing: -0.5px;
+            flex-shrink: 0;
+        }
+
+        .logo-text { display: flex; flex-direction: column; line-height: 1; }
+        .logo-stak    { color: var(--white); font-size: 1.4rem; font-weight: 800; letter-spacing: 0.14em; }
+        .logo-digital { color: rgba(230, 241, 251, 0.7); font-size: 0.62rem; font-weight: 500; letter-spacing: 0.26em; text-transform: uppercase; }
+
+        /* Nav links */
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+
+        .nav-links a {
+            color: rgba(255, 255, 255, 0.82);
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color var(--ease);
+        }
+        .nav-links a:hover { color: var(--white); }
+
+        .nav-cta {
+            background: var(--green) !important;
+            color: var(--white) !important;
+            padding: 10px 22px !important;
+            border-radius: var(--radius-sm) !important;
+            font-weight: 600 !important;
+        }
+        .nav-cta:hover { background: var(--green-dark) !important; }
+
+        /* Hamburger */
+        .nav-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 4px;
+            background: none;
+            border: none;
+            z-index: 1100;
+        }
+
+        .nav-toggle span {
+            display: block;
+            width: 26px;
+            height: 2px;
+            background: var(--white);
+            border-radius: 2px;
+            transition: all var(--ease);
+        }
+
+        .nav-toggle.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+        .nav-toggle.open span:nth-child(2) { opacity: 0; }
+        .nav-toggle.open span:nth-child(3) { transform: rotate(-45deg) translate(7px, -6px); }
+
+        /* ================================
+           Hero
+        ================================ */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #0b2e54 0%, var(--blue) 48%, #156b52 100%);
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            padding: 130px 0 90px;
+        }
+
+        /* Decorative geometry */
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -15%;
+            right: -8%;
+            width: 580px;
+            height: 580px;
+            border: 72px solid rgba(255, 255, 255, 0.04);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -18%;
+            left: -7%;
+            width: 500px;
+            height: 500px;
+            border: 56px solid rgba(29, 158, 117, 0.13);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .geo-box {
+            position: absolute;
+            border: 2px solid rgba(255, 255, 255, 0.06);
+            border-radius: var(--radius);
+            pointer-events: none;
+        }
+
+        .geo-box-1 {
+            top: 18%;
+            right: 6%;
+            width: 280px;
+            height: 280px;
+            transform: rotate(14deg);
+        }
+
+        .geo-box-2 {
+            bottom: 22%;
+            right: 18%;
+            width: 140px;
+            height: 140px;
+            background: rgba(29, 158, 117, 0.09);
+            transform: rotate(-9deg);
+            border-color: transparent;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 720px;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            color: var(--white);
+            font-size: 0.85rem;
+            font-weight: 500;
+            padding: 8px 18px;
+            border-radius: 100px;
+            margin-bottom: 28px;
+        }
+
+        .hero-badge .dot {
+            width: 8px;
+            height: 8px;
+            background: var(--green);
+            border-radius: 50%;
+            animation: pulse 2.2s infinite;
+            flex-shrink: 0;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50%       { opacity: 0.5; transform: scale(1.4); }
+        }
+
+        .hero h1 { color: var(--white); margin-bottom: 20px; }
+        .hero h1 .hi { color: #5fd3a8; }
+
+        .hero-sub {
+            color: rgba(255, 255, 255, 0.82);
+            font-size: 1.15rem;
+            max-width: 560px;
+            line-height: 1.75;
+            margin-bottom: 40px;
+        }
+
+        .hero-btns {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-bottom: 52px;
+        }
+
+        .hero-trust {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 24px;
+        }
+
+        .trust-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: rgba(255, 255, 255, 0.72);
+            font-size: 0.9rem;
+        }
+
+        .trust-item i { color: #5fd3a8; }
+
+        /* ================================
+           Value Props
+        ================================ */
+        .value-props { background: var(--white); }
+
+        .value-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+        }
+
+        .value-card {
+            background: var(--light-blue);
+            border-radius: var(--radius);
+            padding: 40px 32px;
+            text-align: center;
+            transition: transform var(--ease), box-shadow var(--ease);
+        }
+        .value-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
+
+        .value-icon {
+            width: 70px;
+            height: 70px;
+            background: var(--blue);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+            font-size: 1.75rem;
+            color: var(--white);
+        }
+
+        .value-card h3 { color: var(--graphite); margin-bottom: 12px; font-size: 1.2rem; }
+        .value-card p  { color: var(--graphite-lt); font-size: 0.95rem; line-height: 1.72; }
+
+        /* ================================
+           Audience
+        ================================ */
+        .audience { background: var(--gray-100); }
+
+        .audience-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 28px;
+        }
+
+        .audience-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 48px 40px;
+            border-top: 4px solid var(--blue);
+        }
+        .audience-card:last-child { border-top-color: var(--green); }
+
+        .audience-emoji { font-size: 2.4rem; margin-bottom: 20px; }
+        .audience-card h3 { font-size: 1.35rem; margin-bottom: 14px; }
+        .audience-card p  { color: var(--graphite-lt); line-height: 1.75; }
+
+        .audience-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 20px;
+        }
+
+        .tag {
+            background: var(--light-blue);
+            color: var(--blue);
+            font-size: 0.78rem;
+            font-weight: 600;
+            padding: 4px 12px;
+            border-radius: 100px;
+        }
+
+        .audience-card:last-child .tag {
+            background: #e8f7f2;
+            color: var(--green-dark);
+        }
+
+        /* ================================
+           Differentials
+        ================================ */
+        .differentials { background: var(--white); }
+
+        .diff-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .diff-item {
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+            padding: 32px;
+            background: var(--light-blue);
+            border-radius: var(--radius);
+            transition: transform var(--ease);
+        }
+        .diff-item:hover { transform: translateY(-3px); }
+
+        .diff-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--blue);
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 1.15rem;
+            flex-shrink: 0;
+        }
+
+        .diff-text h3 { margin-bottom: 8px; }
+        .diff-text p  { color: var(--graphite-lt); font-size: 0.9rem; line-height: 1.65; }
+
+        /* ================================
+           FAQ
+        ================================ */
+        .faq { background: var(--gray-100); }
+
+        .faq-list {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .faq-item {
+            background: var(--white);
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--gray-200);
+            overflow: hidden;
+        }
+
+        .faq-q {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+            padding: 22px 26px;
+            background: none;
+            border: none;
+            font-family: var(--font);
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--graphite);
+            text-align: left;
+            cursor: pointer;
+            transition: color var(--ease);
+        }
+        .faq-q:hover      { color: var(--blue); }
+        .faq-q[aria-expanded="true"] { color: var(--blue); }
+
+        .faq-chevron {
+            width: 28px;
+            height: 28px;
+            background: var(--light-blue);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            color: var(--blue);
+            font-size: 0.72rem;
+            transition: transform var(--ease), background var(--ease), color var(--ease);
+        }
+        .faq-q[aria-expanded="true"] .faq-chevron {
+            transform: rotate(180deg);
+            background: var(--blue);
+            color: var(--white);
+        }
+
+        .faq-a {
+            display: grid;
+            grid-template-rows: 0fr;
+            transition: grid-template-rows 0.32s ease;
+        }
+        .faq-a.open { grid-template-rows: 1fr; }
+
+        .faq-a-inner { overflow: hidden; }
+
+        .faq-a p {
+            padding: 0 26px 22px;
+            color: var(--graphite-lt);
+            line-height: 1.78;
+            font-size: 0.95rem;
+        }
+
+        /* ================================
+           CTA Section
+        ================================ */
+        .cta-section {
+            background: linear-gradient(135deg, var(--blue) 0%, #1a7a5e 100%);
+            text-align: center;
+            padding: 100px 0;
+        }
+
+        .cta-section h2 { color: var(--white); margin-bottom: 14px; }
+        .cta-section p  { color: rgba(255,255,255,0.82); font-size: 1.05rem; margin-bottom: 40px; }
+
+        .cta-row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .cta-phone {
+            color: rgba(255, 255, 255, 0.88);
+            font-size: 1rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .cta-phone i { color: rgba(255,255,255,0.6); }
+
+        /* ================================
+           Contact Form
+        ================================ */
+        .contact { background: var(--white); }
+
+        .form-wrap {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+        }
+        .form-group.span-2 { grid-column: 1 / -1; }
+
+        .form-group label {
+            font-size: 0.88rem;
+            font-weight: 600;
+            color: var(--graphite);
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            padding: 13px 16px;
+            border: 2px solid var(--gray-200);
+            border-radius: var(--radius-sm);
+            font-family: var(--font);
+            font-size: 1rem;
+            color: var(--graphite);
+            background: var(--white);
+            outline: none;
+            transition: border-color var(--ease);
+            appearance: none;
+        }
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus { border-color: var(--blue); }
+
+        .form-group textarea { resize: vertical; min-height: 120px; }
+
+        .form-footer {
+            grid-column: 1 / -1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 14px;
+            margin-top: 8px;
+        }
+
+        .form-footer .btn {
+            width: 100%;
+            justify-content: center;
+            padding: 16px;
+            font-size: 1.05rem;
+        }
+
+        .form-note {
+            color: var(--gray-600);
+            font-size: 0.83rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* ================================
+           Footer
+        ================================ */
+        .footer {
+            background: var(--graphite);
+            padding: 56px 0 30px;
+        }
+
+        .footer-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 40px;
+            margin-bottom: 44px;
+        }
+
+        .footer .logo-stak    { font-size: 1.5rem; }
+        .footer .logo-digital { color: rgba(255,255,255,0.42); }
+        .footer .logo-icon    { background: var(--blue); color: var(--white); }
+
+        .footer-tagline {
+            color: rgba(255,255,255,0.38);
+            font-size: 0.78rem;
+            margin-top: 10px;
+            letter-spacing: 0.05em;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .footer-links a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: rgba(255,255,255,0.68);
+            font-size: 0.95rem;
+            transition: color var(--ease);
+        }
+        .footer-links a:hover { color: var(--white); }
+        .footer-links a i { color: var(--green); width: 16px; }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.08);
+            padding-top: 26px;
+            text-align: center;
+            color: rgba(255,255,255,0.35);
+            font-size: 0.83rem;
+        }
+
+        /* ================================
+           Floating WhatsApp
+        ================================ */
+        .wa-float {
+            position: fixed;
+            bottom: 28px;
+            right: 28px;
+            z-index: 999;
+            width: 60px;
+            height: 60px;
+            background: #25D366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.7rem;
+            color: var(--white);
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.5);
+            transition: transform var(--ease), box-shadow var(--ease);
+        }
+        .wa-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 30px rgba(37, 211, 102, 0.65);
+        }
+
+        /* ================================
+           Scroll animations
+        ================================ */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        .fade-up.d1 { transition-delay: 0.1s; }
+        .fade-up.d2 { transition-delay: 0.2s; }
+        .fade-up.d3 { transition-delay: 0.3s; }
+        .fade-up.visible { opacity: 1; transform: none; }
+
+        /* ================================
+           Responsive
+        ================================ */
+        @media (max-width: 900px) {
+            .value-grid    { grid-template-columns: 1fr; gap: 20px; }
+            .audience-grid { grid-template-columns: 1fr; }
+            .diff-grid     { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 768px) {
+            section { padding: 64px 0; }
+
+            .nav-links { display: none; }
+            .nav-toggle { display: flex; }
+
+            .nav-links.open {
+                display: flex;
+                flex-direction: column;
+                position: fixed;
+                inset: 0;
+                background: rgba(11, 28, 50, 0.97);
+                justify-content: center;
+                align-items: center;
+                gap: 32px;
+                z-index: 1050;
+            }
+            .nav-links.open a { font-size: 1.2rem; color: var(--white); }
+            .nav-links.open .nav-cta { background: var(--green) !important; padding: 12px 32px !important; }
+
+            .hero { padding: 110px 0 70px; }
+            .hero-btns { flex-direction: column; }
+            .hero-btns .btn { width: 100%; justify-content: center; }
+
+            .form-grid { grid-template-columns: 1fr; }
+            .form-group.span-2 { grid-column: 1; }
+
+            .footer-inner { flex-direction: column; gap: 32px; }
+        }
+
+        @media (max-width: 480px) {
+            .container { padding: 0 16px; }
+            .hero-trust { flex-direction: column; gap: 10px; }
+            .cta-row    { flex-direction: column; }
+            .audience-card { padding: 36px 28px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- =============================
+     Navbar
+============================= -->
+<nav class="navbar" id="navbar" aria-label="Navegação principal">
+    <div class="container">
+        <a href="#" class="logo" aria-label="STAK Digital">
+            <div class="logo-icon" aria-hidden="true">SK</div>
+            <div class="logo-text">
+                <span class="logo-stak">STAK</span>
+                <span class="logo-digital">Digital</span>
+            </div>
+        </a>
+
+        <ul class="nav-links" id="navLinks" role="list">
+            <li><a href="#servicos">Serviços</a></li>
+            <li><a href="#para-quem">Para quem</a></li>
+            <li><a href="#diferenciais">Diferenciais</a></li>
+            <li><a href="#faq">FAQ</a></li>
+            <li><a href="#contato" class="nav-cta">Diagnóstico grátis</a></li>
+        </ul>
+
+        <button class="nav-toggle" id="navToggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="navLinks">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
+</nav>
+
+<!-- =============================
+     Hero
+============================= -->
+<section class="hero" id="inicio" aria-label="Hero">
+    <div class="geo-box geo-box-1" aria-hidden="true"></div>
+    <div class="geo-box geo-box-2" aria-hidden="true"></div>
+
+    <div class="container">
+        <div class="hero-content">
+            <div class="hero-badge" aria-hidden="true">
+                <span class="dot"></span>
+                SEO Local &amp; Google Meu Negócio
+            </div>
+
+            <h1>Seu negócio no<br><span class="hi">topo do Google</span></h1>
+
+            <p class="hero-sub">
+                Especialistas em SEO local e Google Meu Negócio para negócios que querem ser encontrados. Do mapa ao clique.
+            </p>
+
+            <div class="hero-btns">
+                <a href="https://wa.me/5512988300712" class="btn btn-green" target="_blank" rel="noopener noreferrer">
+                    <i class="fab fa-whatsapp" aria-hidden="true"></i>
+                    Falar no WhatsApp
+                </a>
+                <a href="#contato" class="btn btn-outline-white">
+                    Solicitar diagnóstico grátis
+                    <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                </a>
+            </div>
+
+            <div class="hero-trust" aria-label="Diferenciais">
+                <span class="trust-item"><i class="fas fa-check-circle" aria-hidden="true"></i> Diagnóstico 100% gratuito</span>
+                <span class="trust-item"><i class="fas fa-check-circle" aria-hidden="true"></i> Primeiros resultados em 30–60 dias</span>
+                <span class="trust-item"><i class="fas fa-check-circle" aria-hidden="true"></i> Atendimento personalizado</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- =============================
+     Value Props
+============================= -->
+<section class="value-props" id="servicos">
+    <div class="container">
+        <div class="section-header fade-up">
+            <span class="section-tag">O que fazemos</span>
+            <h2>Visibilidade local que gera clientes reais</h2>
+            <p class="section-subtitle">Estratégias focadas em fazer você aparecer quando seus clientes mais precisam.</p>
+        </div>
+
+        <div class="value-grid">
+            <div class="value-card fade-up d1">
+                <div class="value-icon" aria-hidden="true"><i class="fas fa-map-marker-alt"></i></div>
+                <h3>SEO Local</h3>
+                <p>Apareça quando seus clientes buscam perto de você. Otimizamos sua presença nos resultados orgânicos para buscas regionais e por proximidade.</p>
+            </div>
+
+            <div class="value-card fade-up d2">
+                <div class="value-icon" aria-hidden="true"><i class="fab fa-google"></i></div>
+                <h3>Google Meu Negócio</h3>
+                <p>Perfil otimizado para mais visitas e mais clientes. Entramos no famoso "pacote de 3", o destaque máximo nas buscas locais do Google.</p>
+            </div>
+
+            <div class="value-card fade-up d3">
+                <div class="value-icon" aria-hidden="true"><i class="fas fa-chart-line"></i></div>
+                <h3>Resultados Reais</h3>
+                <p>Estratégia baseada em dados e crescimento contínuo. Relatórios mensais claros para você acompanhar cada avanço sem precisar decifrar jargões.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- =============================
+     Audience
+============================= -->
+<section class="audience" id="para-quem">
+    <div class="container">
+        <div class="section-header fade-up">
+            <span class="section-tag">Para quem é a STAK Digital?</span>
+            <h2>Quem atendemos</h2>
+        </div>
+
+        <div class="audience-grid">
+            <div class="audience-card fade-up d1">
+                <div class="audience-emoji" aria-hidden="true">🏪</div>
+                <h3>Negócios locais</h3>
+                <p>Você tem um negócio físico e quer aparecer no Google Maps e nas buscas da sua região. Seus clientes estão te procurando. Mas te encontrando?</p>
+                <div class="audience-tags" aria-label="Exemplos de negócios">
+                    <span class="tag">Restaurantes</span>
+                    <span class="tag">Clínicas</span>
+                    <span class="tag">Lojas</span>
+                    <span class="tag">Prestadores de serviço</span>
+                    <span class="tag">Salões</span>
+                </div>
+            </div>
+
+            <div class="audience-card fade-up d2">
+                <div class="audience-emoji" aria-hidden="true">🤝</div>
+                <h3>Agências parceiras</h3>
+                <p>Sua agência quer oferecer SEO local aos clientes sem montar uma equipe interna. Atuamos em modelo white label ou parceria direta, com total transparência e suporte.</p>
+                <div class="audience-tags" aria-label="Modelos de parceria">
+                    <span class="tag">White label</span>
+                    <span class="tag">Parceria direta</span>
+                    <span class="tag">Co-gestão</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- =============================
+     Differentials
+============================= -->
+<section class="differentials" id="diferenciais">
+    <div class="container">
+        <div class="section-header fade-up">
+            <span class="section-tag">Por que a STAK?</span>
+            <h2>Nossos diferenciais</h2>
+        </div>
+
+        <div class="diff-grid">
+            <div class="diff-item fade-up d1">
+                <div class="diff-icon" aria-hidden="true"><i class="fas fa-user-check"></i></div>
+                <div class="diff-text">
+                    <h3>Atendimento personalizado</h3>
+                    <p>Você fala diretamente com a equipe que cuida do seu negócio. Nada de tickets e atendentes genéricos. Relacionamento próximo e real.</p>
+                </div>
+            </div>
+
+            <div class="diff-item fade-up d2">
+                <div class="diff-icon" aria-hidden="true"><i class="fas fa-puzzle-piece"></i></div>
+                <div class="diff-text">
+                    <h3>Estratégia sob medida</h3>
+                    <p>Não existe fórmula pronta. Cada negócio tem sua concorrência, sua região e seus objetivos. A estratégia acompanha tudo isso.</p>
+                </div>
+            </div>
+
+            <div class="diff-item fade-up d1">
+                <div class="diff-icon" aria-hidden="true"><i class="fas fa-file-alt"></i></div>
+                <div class="diff-text">
+                    <h3>Relatórios claros</h3>
+                    <p>Você sempre sabe o que está acontecendo. Relatórios mensais em linguagem simples, sem enrolação. Só o que importa para o seu negócio.</p>
+                </div>
+            </div>
+
+            <div class="diff-item fade-up d2">
+                <div class="diff-icon" aria-hidden="true"><i class="fas fa-award"></i></div>
+                <div class="diff-text">
+                    <h3>Equipe especializada</h3>
+                    <p>Focadas exclusivamente em SEO local. Conhecemos as ferramentas, os algoritmos e as melhores práticas. Sem generalismo.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- =============================
+     FAQ
+============================= -->
+<section class="faq" id="faq">
+    <div class="container">
+        <div class="section-header fade-up">
+            <span class="section-tag">Dúvidas frequentes</span>
+            <h2>Perguntas e respostas</h2>
+        </div>
+
+        <div class="faq-list" role="list">
+
+            <div class="faq-item fade-up" role="listitem">
+                <button class="faq-q" aria-expanded="false" aria-controls="faq-a1">
+                    <span>O que é SEO local e por que meu negócio precisa?</span>
+                    <span class="faq-chevron" aria-hidden="true"><i class="fas fa-chevron-down"></i></span>
+                </button>
+                <div class="faq-a" id="faq-a1" role="region">
+                    <div class="faq-a-inner">
+                        <p>SEO local é um conjunto de estratégias para fazer seu negócio aparecer nas buscas do Google quando pessoas próximas pesquisam pelo seu serviço. Se alguém digita "dentista perto de mim" ou "restaurante em São José dos Campos", o SEO local define se você aparece ou não. Sem ele, você é invisível para quem está do lado da sua porta.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item fade-up" role="listitem">
+                <button class="faq-q" aria-expanded="false" aria-controls="faq-a2">
+                    <span>O que é Google Meu Negócio e como ele me ajuda?</span>
+                    <span class="faq-chevron" aria-hidden="true"><i class="fas fa-chevron-down"></i></span>
+                </button>
+                <div class="faq-a" id="faq-a2" role="region">
+                    <div class="faq-a-inner">
+                        <p>É o perfil gratuito do Google que exibe seu negócio no Maps e nas buscas locais, mostrando endereço, horário, fotos, avaliações e telefone. Quando bem otimizado, ele coloca você no famoso "pacote de 3", aquelas três empresas que aparecem com destaque no topo do Google. É uma das ferramentas mais poderosas para negócios locais.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item fade-up" role="listitem">
+                <button class="faq-q" aria-expanded="false" aria-controls="faq-a3">
+                    <span>Em quanto tempo vejo resultados?</span>
+                    <span class="faq-chevron" aria-hidden="true"><i class="fas fa-chevron-down"></i></span>
+                </button>
+                <div class="faq-a" id="faq-a3" role="region">
+                    <div class="faq-a-inner">
+                        <p>Os primeiros sinais aparecem entre 30 e 60 dias, como aumento de visualizações e cliques no perfil. Resultados mais sólidos, como mais ligações e visitas, costumam aparecer entre 3 e 6 meses. SEO é um investimento de médio prazo, mas os resultados são duradouros, diferente de anúncios pagos que somem quando você para de pagar.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item fade-up" role="listitem">
+                <button class="faq-q" aria-expanded="false" aria-controls="faq-a4">
+                    <span>Meu negócio é pequeno. Vale a pena investir em SEO?</span>
+                    <span class="faq-chevron" aria-hidden="true"><i class="fas fa-chevron-down"></i></span>
+                </button>
+                <div class="faq-a" id="faq-a4" role="region">
+                    <div class="faq-a-inner">
+                        <p>Especialmente para negócios pequenos e locais. Justamente porque você compete com quem está na sua região, não com gigantes nacionais. Uma padaria, clínica ou loja local bem posicionada no Google pode triplicar o número de clientes sem aumentar o investimento em publicidade.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item fade-up" role="listitem">
+                <button class="faq-q" aria-expanded="false" aria-controls="faq-a5">
+                    <span>Como funciona o trabalho da STAK Digital?</span>
+                    <span class="faq-chevron" aria-hidden="true"><i class="fas fa-chevron-down"></i></span>
+                </button>
+                <div class="faq-a" id="faq-a5" role="region">
+                    <div class="faq-a-inner">
+                        <p>Começamos com um diagnóstico gratuito do seu negócio e da sua presença online. A partir daí, montamos uma estratégia personalizada, otimizamos seu perfil no Google Meu Negócio, trabalhamos o SEO do seu site e entregamos relatórios mensais para você acompanhar a evolução. Tudo com atendimento próximo e transparente.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item fade-up" role="listitem">
+                <button class="faq-q" aria-expanded="false" aria-controls="faq-a6">
+                    <span>Vocês atendem agências de marketing?</span>
+                    <span class="faq-chevron" aria-hidden="true"><i class="fas fa-chevron-down"></i></span>
+                </button>
+                <div class="faq-a" id="faq-a6" role="region">
+                    <div class="faq-a-inner">
+                        <p>Sim! Trabalhamos como parceiros estratégicos de agências que querem oferecer SEO local aos seus clientes sem montar uma equipe interna. Atuamos em modelo white label ou em parceria direta, com total transparência e suporte.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item fade-up" role="listitem">
+                <button class="faq-q" aria-expanded="false" aria-controls="faq-a7">
+                    <span>Quanto custa o serviço?</span>
+                    <span class="faq-chevron" aria-hidden="true"><i class="fas fa-chevron-down"></i></span>
+                </button>
+                <div class="faq-a" id="faq-a7" role="region">
+                    <div class="faq-a-inner">
+                        <p>Os planos variam conforme o tamanho do negócio, a concorrência na região e os objetivos. Por isso oferecemos um diagnóstico gratuito antes de qualquer proposta. Assim você recebe um valor justo para o que realmente precisa, sem pagar por o que não vai usar.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item fade-up" role="listitem">
+                <button class="faq-q" aria-expanded="false" aria-controls="faq-a8">
+                    <span>Preciso ter site para trabalhar com vocês?</span>
+                    <span class="faq-chevron" aria-hidden="true"><i class="fas fa-chevron-down"></i></span>
+                </button>
+                <div class="faq-a" id="faq-a8" role="region">
+                    <div class="faq-a-inner">
+                        <p>Não necessariamente. É possível gerar ótimos resultados apenas com o Google Meu Negócio otimizado, mesmo sem site. Mas se você tiver ou quiser criar um, potencializamos ainda mais os resultados com SEO on-page.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- =============================
+     CTA
+============================= -->
+<section class="cta-section" aria-label="Chamada para ação">
+    <div class="container">
+        <div class="fade-up">
+            <h2>Pronto para aparecer no topo?</h2>
+            <p>Comece com um diagnóstico gratuito, sem compromisso, sem enrolação.</p>
+            <div class="cta-row">
+                <a href="https://wa.me/5512988300712" class="btn btn-green" target="_blank" rel="noopener noreferrer">
+                    <i class="fab fa-whatsapp" aria-hidden="true"></i>
+                    Falar no WhatsApp
+                </a>
+                <a href="#contato" class="btn btn-outline-white">
+                    Preencher formulário
+                </a>
+                <span class="cta-phone">
+                    <i class="fas fa-phone" aria-hidden="true"></i>
+                    (12) 98830-0712
+                </span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- =============================
+     Contact Form
+============================= -->
+<section class="contact" id="contato">
+    <div class="container">
+        <div class="section-header fade-up">
+            <span class="section-tag">Diagnóstico gratuito</span>
+            <h2>Solicite seu diagnóstico</h2>
+            <p class="section-subtitle">Preencha abaixo e nossa equipe entra em contato para apresentar as melhores oportunidades para o seu negócio.</p>
+        </div>
+
+        <div class="form-wrap">
+            <form class="form-grid" id="contactForm" novalidate>
+
+                <div class="form-group fade-up d1">
+                    <label for="nome">Nome completo</label>
+                    <input type="text" id="nome" name="nome" placeholder="Seu nome" required autocomplete="name">
+                </div>
+
+                <div class="form-group fade-up d2">
+                    <label for="email">E-mail</label>
+                    <input type="email" id="email" name="email" placeholder="seu@email.com" required autocomplete="email">
+                </div>
+
+                <div class="form-group fade-up d1">
+                    <label for="whatsapp">WhatsApp</label>
+                    <input type="tel" id="whatsapp" name="whatsapp" placeholder="(12) 99999-9999" required autocomplete="tel">
+                </div>
+
+                <div class="form-group fade-up d2">
+                    <label for="tipo">Tipo de negócio</label>
+                    <select id="tipo" name="tipo" required>
+                        <option value="" disabled selected>Selecione</option>
+                        <option value="restaurante">Restaurante / Alimentação</option>
+                        <option value="clinica">Clínica / Saúde</option>
+                        <option value="loja">Loja / Varejo</option>
+                        <option value="servicos">Prestador de serviços</option>
+                        <option value="agencia">Agência de marketing</option>
+                        <option value="outro">Outro</option>
+                    </select>
+                </div>
+
+                <div class="form-group fade-up d1">
+                    <label for="local">Nome do local e Cidade</label>
+                    <input type="text" id="local" name="local" placeholder="Ex: Clínica Saúde Total - São Paulo" required>
+                </div>
+
+                <div class="form-group fade-up d2">
+                    <label for="maps">Link do Google Maps <span style="font-weight:400;color:var(--gray-600)">(opcional)</span></label>
+                    <input type="url" id="maps" name="maps" placeholder="https://maps.app.goo.gl/...">
+                </div>
+
+                <div class="form-group span-2 fade-up">
+                    <label for="mensagem">Conte um pouco sobre seu negócio <span style="font-weight:400;color:var(--gray-600)">(opcional)</span></label>
+                    <textarea id="mensagem" name="mensagem" placeholder="O que você gostaria de melhorar na sua presença online?"></textarea>
+                </div>
+
+                <div class="form-footer fade-up">
+                    <button type="submit" class="btn btn-blue" id="submitBtn">
+                        <i class="fas fa-paper-plane" aria-hidden="true"></i>
+                        Solicitar diagnóstico grátis
+                    </button>
+                    <p class="form-note">
+                        <i class="fas fa-lock" aria-hidden="true"></i>
+                        Seus dados estão seguros. Não enviamos spam.
+                    </p>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</section>
+
+<!-- =============================
+     Footer
+============================= -->
+<footer class="footer" aria-label="Rodapé">
+    <div class="container">
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <a href="#" class="logo" aria-label="STAK Digital">
+                    <div class="logo-icon" aria-hidden="true">SK</div>
+                    <div class="logo-text">
+                        <span class="logo-stak">STAK</span>
+                        <span class="logo-digital">Digital</span>
+                    </div>
+                </a>
+                <p class="footer-tagline">Stephanie · Almeida · Kerber</p>
+            </div>
+
+            <nav class="footer-links" aria-label="Links de contato">
+                <a href="tel:+5512988300712">
+                    <i class="fas fa-phone" aria-hidden="true"></i>
+                    (12) 98830-0712
+                </a>
+                <a href="https://wa.me/5512988300712" target="_blank" rel="noopener noreferrer">
+                    <i class="fab fa-whatsapp" aria-hidden="true"></i>
+                    Falar no WhatsApp
+                </a>
+            </nav>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2025 STAK Digital. Todos os direitos reservados.</p>
+        </div>
+    </div>
+</footer>
+
+<!-- Floating WhatsApp button -->
+<a href="https://wa.me/5512988300712"
+   class="wa-float"
+   target="_blank"
+   rel="noopener noreferrer"
+   aria-label="Falar com a STAK Digital no WhatsApp">
+    <i class="fab fa-whatsapp" aria-hidden="true"></i>
+</a>
+
+<script>
+    'use strict';
+
+    /* =============================
+       Navbar scroll effect
+    ============================= */
+    const navbar = document.getElementById('navbar');
+
+    window.addEventListener('scroll', () => {
+        navbar.classList.toggle('scrolled', window.scrollY > 50);
+    }, { passive: true });
+
+    /* =============================
+       Mobile menu
+    ============================= */
+    const navToggle = document.getElementById('navToggle');
+    const navLinks  = document.getElementById('navLinks');
+
+    function openMenu() {
+        navLinks.classList.add('open');
+        navToggle.classList.add('open');
+        navToggle.setAttribute('aria-expanded', 'true');
+        navToggle.setAttribute('aria-label', 'Fechar menu');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeMenu() {
+        navLinks.classList.remove('open');
+        navToggle.classList.remove('open');
+        navToggle.setAttribute('aria-expanded', 'false');
+        navToggle.setAttribute('aria-label', 'Abrir menu');
+        document.body.style.overflow = '';
+    }
+
+    navToggle.addEventListener('click', () => {
+        navLinks.classList.contains('open') ? closeMenu() : openMenu();
+    });
+
+    navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+
+    /* =============================
+       FAQ Accordion
+    ============================= */
+    document.querySelectorAll('.faq-q').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const isOpen = btn.getAttribute('aria-expanded') === 'true';
+
+            // Close all
+            document.querySelectorAll('.faq-q').forEach(b => {
+                b.setAttribute('aria-expanded', 'false');
+                b.nextElementSibling.classList.remove('open');
+            });
+
+            // Open clicked if it was closed
+            if (!isOpen) {
+                btn.setAttribute('aria-expanded', 'true');
+                btn.nextElementSibling.classList.add('open');
+            }
+        });
+    });
+
+    /* =============================
+       Intersection Observer: fade-up animations
+    ============================= */
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+            if (e.isIntersecting) {
+                e.target.classList.add('visible');
+                observer.unobserve(e.target);
+            }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+    /* =============================
+       Form submit
+    ============================= */
+    document.getElementById('contactForm').addEventListener('submit', e => {
+        e.preventDefault();
+
+        const nome     = document.getElementById('nome').value.trim();
+        const email    = document.getElementById('email').value.trim();
+        const whatsapp = document.getElementById('whatsapp').value.trim();
+        const tipo     = document.getElementById('tipo').value;
+        const local    = document.getElementById('local').value.trim();
+
+        if (!nome || !email || !whatsapp || !tipo || !local) {
+            alert('Por favor, preencha todos os campos obrigatórios.');
+            return;
+        }
+
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+            alert('Por favor, insira um e-mail válido.');
+            return;
+        }
+
+        const btn = document.getElementById('submitBtn');
+        btn.innerHTML = '<i class="fas fa-check" aria-hidden="true"></i> Enviado! Entraremos em contato.';
+        btn.disabled = true;
+        btn.style.background = 'var(--green)';
+        btn.style.borderColor = 'var(--green)';
+    });
+</script>
+</body>
+</html>
