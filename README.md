@@ -41,10 +41,6 @@ images/      # logos e ícones da marca
 
 Tipografia: Google Fonts, estilo moderno/profissional.
 
-## Contato
-
-WhatsApp: [(12) 98830-0712](https://wa.me/5512988300712)
-
 ## Desenvolvimento
 
 Sem etapa de build, sem testes automatizados, sem gerenciador de pacotes. Edite `index.html` diretamente.
