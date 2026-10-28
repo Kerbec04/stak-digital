@@ -1,48 +1,49 @@
-# STAK Digital
+# 🗺️ STAK Digital
 
-Landing page da **STAK Digital**, especialista em SEO local e Google Meu Negócio.
+**English** · [Português](README.pt-BR.md)
 
-Projeto estático de página única, sem build tools, sem dependências além de CDNs.
+[![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)]()
+[![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)]()
+[![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)]()
+[![Website](https://img.shields.io/badge/Live-stakdigital.com.br-185FA5?style=for-the-badge)](https://stakdigital.com.br)
 
-## Como visualizar
+Landing page for **STAK Digital**, a local SEO and Google Business Profile agency.
+Live at [stakdigital.com.br](https://stakdigital.com.br).
 
-Não é necessário servidor — basta abrir o arquivo diretamente no navegador:
+## 🚀 Features
+
+- Single-page site with services, target audience (local businesses and partner agencies),
+  differentials and FAQ
+- Free diagnosis form and WhatsApp call to action
+- **AI search ready:** an `llms.txt` file describes the business for LLM-based search engines, and
+  `robots.txt` allows crawling
+- No build step and no dependencies besides Google Fonts and Font Awesome via CDN
+
+## 🎨 Visual Identity
+
+| Color | Value |
+| --- | --- |
+| Primary blue | `#185FA5` |
+| Growth green | `#1D9E75` |
+| Neutral graphite | `#2C2C2A` |
+| Light blue (background) | `#E6F1FB` |
+| WhatsApp green | `#25D366` |
+
+## ⚙️ Running Locally
+
+No server needed: open the file in the browser.
 
 ```bash
-# macOS
-open index.html
-
-# Linux
-xdg-open index.html
+xdg-open index.html   # Linux
+open index.html       # macOS
 ```
 
-## Stack
+## 📂 Project Structure
 
-- HTML, CSS e JavaScript puros — tudo em `index.html`
-- Google Fonts e Font Awesome via CDN (únicas dependências externas)
-- Sem frameworks, sem bundler
-
-## Estrutura
-
+```text
+├── index.html        # the whole page (markup, styles and scripts)
+├── images/           # logos and brand assets
+├── faq-answers.md    # full FAQ answers
+├── llms.txt          # business description for LLM-based search
+└── robots.txt
 ```
-index.html   # página completa (estrutura, estilos e scripts)
-images/      # logos e ícones da marca
-```
-
-## Identidade visual
-
-| Cor | Valor |
-|---|---|
-| Azul principal | `#185FA5` |
-| Verde crescimento | `#1D9E75` |
-| Grafite neutro | `#2C2C2A` |
-| Azul claro (fundo) | `#E6F1FB` |
-| Verde WhatsApp | `#25D366` |
-
-Tipografia: Google Fonts, estilo moderno/profissional.
-
-## Desenvolvimento
-
-Sem etapa de build, sem testes automatizados, sem gerenciador de pacotes. Edite `index.html` diretamente.
-
-Mais detalhes de convenções e seções da página em [`CLAUDE.md`](./CLAUDE.md).
